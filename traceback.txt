@@ -1,0 +1,28 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 437, in script
+    if understooddivorce == true:
+  File "game/script.rpy", line 437, in <module>
+    if understooddivorce == true:
+NameError: name 'true' is not defined
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 437, in script
+    if understooddivorce == true:
+  File "C:\Users\Reis\Documents\The Patrician Renpy\renpy\ast.py", line 1729, in execute
+    if renpy.python.py_eval(condition):
+  File "C:\Users\Reis\Documents\The Patrician Renpy\renpy\python.py", line 1943, in py_eval
+    return py_eval_bytecode(code, globals, locals)
+  File "C:\Users\Reis\Documents\The Patrician Renpy\renpy\python.py", line 1936, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+  File "game/script.rpy", line 437, in <module>
+    if understooddivorce == true:
+NameError: name 'true' is not defined
+
+Windows-8-6.2.9200
+Ren'Py 7.0.0.196
+Throw Me In the River 1.0
+Mon Oct 29 02:20:07 2018
