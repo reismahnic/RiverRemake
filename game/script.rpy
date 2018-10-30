@@ -15,7 +15,9 @@ image josephScene1 = "josephsceneoneportrait"
 image josephScene3 = "josephscenethreeportrait"
 image cheryl = "cherylscenethreeportrait"
 image dianeScene2 = "dianescenetwoportrait"
+image dianeScene1 = "dianesceneoneportrait"
 
+#Transitions:
 
 # The game starts here.
 
@@ -26,7 +28,7 @@ label start:
     # images directory to show it.
 
     scene blackbackground
-
+    pause 1
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
@@ -44,9 +46,11 @@ label start:
 
     #Display Title
 
-    scene sceneonebackground
+    scene sceneonebackground with dissolve
+    pause 2
     show josephScene1 at left
-    show dianeScene2 at right
+    show dianeScene1 at right
+    with dissolve
     diane "What do you think it was?"
     joseph "At the time I thought it was some kind of greater power, calling down to me."
     diane "And now?"
@@ -143,7 +147,7 @@ label start:
 
     label askAboutIAC:
         diane "IAC is... well, astonishing."
-        joseph "I know that I wasn't exactly... the best... about encouraging you."
+        joseph "I know that I wasn't exactly... the best... about encouraging you. When you were growing up."
         joseph "With the computer stuff, I mean. Assuming you couldn't learn to- what an idiot I was."
         diane "It was a different time, Dad."
         joseph "No- no. It was sexism. Plain and simple. It was."
@@ -258,17 +262,17 @@ label start:
         jump continueconversation4
 
     label continueconversation4:
-    diane "Dad, you know when I divorced Eric?"
+    diane "Dad, you know how after I divorced Eric, I was just working on IAC for a year straight?"
     menu:
-        "I remember. I didn't understand.":
-            $understooddivorce = False;
-            jump didntUnderstandDivorce
+        "I remember. I didn't understand what you were doing.":
+            $understoodIAC = False;
+            jump didntUnderstandIAC
 
-        "Of course I do. I was happy for you.":
-            $understooddivorce = True;
-            jump understoodDivorce
+        "Of course I do. I was so proud of you.":
+            $understoodIAC = True;
+            jump understoodIAC
 
-    label didntUnderstandDivorce:
+    label didntUnderstandIAC:
     joseph "I remember. I didn't understand."
     diane "Well... I was furious with you."
     joseph "I know."
@@ -287,7 +291,7 @@ label start:
         joseph "I don't understand how it works. How we work. But I don't mind."
     jump continueconversation5
 
-    label understoodDivorce:
+    label understoodIAC:
     joseph "Of course I do."
     diane "I remember when you and Mom got divorced, and I felt like my life was being torn apart."
     if isreligious == True:
@@ -434,7 +438,7 @@ label start:
     joseph "What?"
     diane "There's nothing there anymore."
     diane "He's verbally abusive to me. Every day now. I'm done trying to understand why he's become this way."
-    if understooddivorce == True:
+    if understoodIAC == True:
         joseph "Well, alright."
         diane "That's it?"
         joseph "It's your business."
@@ -482,10 +486,12 @@ label start:
 
     ############################################# SCENE 3 #############################################
     label scene3AttendedFuneral:
-    scene scenethreebackground
+    scene scenethreebackground with dissolve
+    pause 2
     #Joseph walks into park, approaches cheryl, waiting on bench
     show josephScene3 at left
     show cheryl at right
+    with dissolve
     joseph "Hi."
     cheryl "Hi."
     joseph "Well don't get up and hug me or anything."
@@ -536,9 +542,11 @@ label start:
     jump continueconversation8
 
     label scene3NoFuneral:
-    scene scenethreebackground
+    scene scenethreebackground with dissolve
+    pause 2
     show josephScene3 at left
     show cheryl at right
+    with dissolve
     joseph "Hi."
     cheryl "Hi."
     joseph "Uh, listen, I-"
@@ -743,7 +751,7 @@ label start:
         blank "I saw my wife and I sitting down to discuss our divorce."
     else:
         blank "I saw my wife and I yelling at each other while our daughter wasn't home."
-    if understooddivorce == True:
+    if understoodIAC == True:
         blank "I saw my daughter explaining her divorce to me, and my understanding of her."
     else:
         blank "I saw myself lecturing my daughter on her divorce."
