@@ -1,28 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 50, in script
-    show josephScene1 at left with dissolve(time_warp=None)
-TypeError: 'Dissolve' object is not callable
+  File "game/script.rpy", line 522, in script
+    if attendedcollege == True:
+  File "game/script.rpy", line 522, in <module>
+    if attendedcollege == True:
+NameError: name 'attendedcollege' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 50, in script
-    show josephScene1 at left with dissolve(time_warp=None)
-  File "C:\Users\Reis\Documents\The Patrician Renpy\renpy\ast.py", line 1357, in execute
-    renpy.exports.with_statement(trans, paired)
-  File "C:\Users\Reis\Documents\The Patrician Renpy\renpy\exports.py", line 1456, in with_statement
-    return renpy.game.interface.do_with(trans, paired, clear=clear)
-  File "C:\Users\Reis\Documents\The Patrician Renpy\renpy\display\core.py", line 2217, in do_with
-    clear=clear)
-  File "C:\Users\Reis\Documents\The Patrician Renpy\renpy\display\core.py", line 2662, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
-  File "C:\Users\Reis\Documents\The Patrician Renpy\renpy\display\core.py", line 3002, in interact_core
-    new_widget=layers_root)
-TypeError: 'Dissolve' object is not callable
+  File "game/script.rpy", line 522, in script
+    if attendedcollege == True:
+  File "C:\Users\Reis\Documents\The Patrician Renpy\renpy\ast.py", line 1760, in execute
+    if renpy.python.py_eval(condition):
+  File "C:\Users\Reis\Documents\The Patrician Renpy\renpy\python.py", line 1944, in py_eval
+    return py_eval_bytecode(code, globals, locals)
+  File "C:\Users\Reis\Documents\The Patrician Renpy\renpy\python.py", line 1937, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+  File "game/script.rpy", line 522, in <module>
+    if attendedcollege == True:
+NameError: name 'attendedcollege' is not defined
 
 Windows-8-6.2.9200
 Ren'Py 7.1.1.929
 Throw Me In the River 1.0
-Mon Oct 29 14:33:56 2018
+Mon Oct 29 21:04:18 2018

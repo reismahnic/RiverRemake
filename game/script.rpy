@@ -12,6 +12,7 @@ define blank = Character("")
 
 #Setting up images:
 image josephScene1 = "josephsceneoneportrait"
+image josephScene2 = "josephscenetwoportrait"
 image josephScene3 = "josephscenethreeportrait"
 image cheryl = "cherylscenethreeportrait"
 image dianeScene2 = "dianescenetwoportrait"
@@ -346,8 +347,10 @@ label start:
 
     label scene2:
     scene scene2
-
-    diane "Dad, I have a question about Mom and you."
+    show josephScene2 at left
+    show dianeScene2 at right
+    with dissolve
+    diane "Dad, I have a question about you and Mom."
     joseph "Uh oh."
     diane "How was your divorce?"
     diane "I know you both pretended it went smoothly and you were both civil, but..."
@@ -516,7 +519,7 @@ label start:
     joseph "Working hard. Getting good grades."
     joseph "That's good."
     pause(1)
-    if attendedcollege == True:
+    if attendedCollege == True:
         cheryl "I think part of him... just didn't want you to go."
         cheryl "When you left."
         joseph "I didn't get that when he was yelling at me the night before I left to get out."
@@ -692,13 +695,13 @@ label start:
     jump scene4
 
     ############################################# SCENE 4 #############################################
-    scene scene4
     label scene4:
+    scene scene4
     #Shots of bedroom, hallways, stairs, then living room. Takes a few seconds. Cinematic.
     #Shot of father on couch, framing Joseph
     joseph "I'm leaving, Father."
     pause(2)
-    if attendedcollege == True:
+    if attendedCollege == True:
         joseph "I'm going to college."
     else:
         joseph "I'm going with Jack to start my own business."
@@ -723,8 +726,8 @@ label start:
     jump scene5
 
     ############################################# SCENE 5 #############################################
-    scene scene5
     label scene5:
+    scene scene5
     #shots of wheat field
     blank "I was born on a farm in Alberta, along the Rockies."
     blank "My mother passed when I was still too young to work, and my father cared for my sister and I."
@@ -743,7 +746,7 @@ label start:
     else:
         blank "I saw the respect I had for my father, in spite of our differences."
     #orb makes sounds, rotates, whatever
-    if attendedcollege == True:
+    if attendedCollege == True:
         blank "I saw myself attending, and then dropping out of college."
     else:
         blank "I saw myself starting a business with my closest friend."
