@@ -11,14 +11,50 @@ define blank = Character("")
 
 
 #Setting up images:
-image josephScene1 = "josephsceneoneportrait"
-image josephScene2 = "josephscenetwoportrait"
-image josephScene3 = "josephscenethreeportrait"
-image cheryl = "cherylscenethreeportrait"
-image dianeScene2 = "dianescenetwoportrait"
-image dianeScene1 = "dianesceneoneportrait"
+#Portraits:
+#Scene 1:
+image joseph Scene1 = "js1neutralport"
+image joseph Scene1Sad = "js1sadport"
+image joseph Scene1Happy = "js1happyport"
+image diane Scene1 = "ds1neutralport"
+image diane Scene1Sad = "ds1sadport"
 
-#Transitions:
+#Scene 2:
+image joseph Scene2 = "js2neutralport"
+image joseph Scene2Angry = "js2angryport"
+image diane Scene2Happy = "ds2happyport"
+image diane Scene2Angry = "ds2angryport"
+image diane Scene2 = "ds2neutralport"
+
+#Scene 3:
+image joseph Scene3 = "js3neutralport"
+image joseph Scene3Happy = "js3happyport"
+image cheryl Scene3 = "cs3neutralport"
+image cheryl Scene3Happy = "cs3happyport"
+
+#Cutaways:
+#Scene 1:
+image holdingHands = "handsholdingport"
+image dianeOnPhone = "dianeonphoneport"
+
+#Scene 2:
+image teaKettle = "teakettleport"
+
+#Scene 3:
+image josephWalking = "josephwalkingport"
+image josephWalkingReversed = "josephwalkingreversedport"
+image guitarPlaying = "guitarplayingport"
+image coinsIntoCase = "coinsintocaseport"
+image onBench = "onbenchport"
+
+#Defining Audio
+#Music
+define audio.scene1Music = "audio/music/scene1Edited.ogg"
+define audio.scene2angryMusic = "audio/music/scene2angryEdited.ogg"
+define audio.scene2happyMusic = "audio/music/scene2happyEdited.ogg"
+define audio.scene3Music = "audio/music/scene3Edited.ogg"
+define audio.scene3Guitar = "audio/music/superhappyEdited.ogg"
+define audio.distortedMusic = "audio/music/distortedMusic.ogg"
 
 # The game starts here.
 
@@ -37,20 +73,25 @@ label start:
     #show eileen happy
 
     # These display lines of dialogue.
-
+    $_dismiss_pause = False
+    stop music fadeout 1.0
+    play music distortedMusic
     blank "I was born on a farm in Alberta, along the Rockies."
     blank "My mother passed when I was still too young to work, and my father cared for my sister and I."
-    blank "When I was eight years old, I experienced somthing very odd."
+    blank "When I was eight years old, I experienced something very odd."
     blank "I was walking through the high grass near the river, when a bright orb appeared in the sky."
     blank "It slowly descended, until it hovered in place just before me."
     blank "I experienced something that I do not understand."
-
-    #Display Title
-
+    scene 2015background with dissolve
+    stop music fadeout 1.0
+    pause 3
+    scene blackbackground with dissolve
+    pause 1
     scene sceneonebackground with dissolve
+    play music scene1Music
     pause 2
-    show josephScene1 at left
-    show dianeScene1 at right
+    show joseph Scene1 at left
+    show diane Scene1 at right
     with dissolve
     diane "What do you think it was?"
     joseph "At the time I thought it was some kind of greater power, calling down to me."
@@ -78,17 +119,29 @@ label start:
         pause(2)
         joseph "It was lonely out there. Just had my sister."
         diane "Aunt Cheryl talks enough for four people."
+        show joseph Scene1Happy at left
         joseph "Heh! Isn't that the truth..."
         jump continueconversation1
 
     label continueconversation1:
     pause(3)
+    show joseph Scene1Sad at left
     joseph "I'm probably not leaving this hospital, Diane."
+    show diane Scene1Sad at right
     diane "Dad..."
-    pause(1)
+    hide joseph Scene1Sad
+    hide diane Scene1Sad
+    with dissolve
+    show holdingHands at center with dissolve
+    pause(2)
+    hide holdingHands with dissolve
+    show joseph Scene1 at left
+    show diane Scene1Sad at right
+    with dissolve
     joseph "Do you remember when you were in high school, and I was in a car wreck?"
+    show diane Scene1 at right
     diane "Yes."
-    joseph "I was going... had to be 150, 160. Just outside of Toronto."
+    joseph "I was going... had to be hundred fifty, hundred sixty. Just outside of Montreal."
     joseph "Your Mom had left me and I didn't know what to do."
     diane "I remember."
     joseph "And I remember dangling upside down, and struggling to get my seatbelt unhooked..."
@@ -98,8 +151,10 @@ label start:
     else:
         joseph "I didn't know what to do. I was too scared to survive, and not religious enough to pray."
     pause(2)
+    show joseph Scene1Happy at left
     joseph "I'm glad I lived."
     diane "I know."
+    show joseph Scene1 at left
     joseph "I'm glad you're here. Right now, I mean."
     pause(1)
     diane "I know."
@@ -120,8 +175,10 @@ label start:
 
     label askAboutPaul:
         diane "He's taking retirement hard."
+        show joseph Scene1Happy at left
         joseph "I did too, at first."
         diane "He's been seeing his friends more, though."
+        show joseph Scene1 at left
         joseph "From work?"
         diane "Mostly. Sometimes his best friend he grew up with visits."
         joseph "That's good."
@@ -132,14 +189,18 @@ label start:
         joseph "Oh, yeah. What's she majoring in?"
         diane "She doesn't know yet. Just getting her general degree."
         diane "Emma, of course, getting straight A's in everything. You know her."
+        show joseph Scene1Happy at left
         joseph "Well, I'd like to see both of them."
         diane "I know, Dad. They're just both so busy now..."
+        show joseph Scene1 at left
         jump continueconversation2
 
     label askAboutDiane:
         diane "I'm fine."
+        show joseph Scene1Sad at left
         joseph "You've been coming here too often, Diane."
         diane "I said I'm fine, Dad."
+        show joseph Scene1 at left
         joseph "Because I can-"
         diane "Dad."
         joseph "You're fine."
@@ -148,11 +209,16 @@ label start:
 
     label askAboutIAC:
         diane "IAC is... well, astonishing."
+        show joseph Scene1Sad at left
         joseph "I know that I wasn't exactly... the best... about encouraging you. When you were growing up."
         joseph "With the computer stuff, I mean. Assuming you couldn't learn to- what an idiot I was."
-        diane "It was a different time, Dad."
-        joseph "No- no. It was sexism. Plain and simple. It was."
+        diane "Well, your weird... old person sexism only made me more determined to prove you wrong."
+        show joseph Scene1Happy
+        joseph "Ha! I guess so."
         joseph "You're so brilliant, Diane. The things you've done. You've changed the world."
+        show joseph Scene1
+        joseph "I'm sorry, though. I really am."
+        diane "...Thank you."
         jump continueconversation2
 
     label continueconversation2:
@@ -160,8 +226,10 @@ label start:
         joseph "Diane?"
         diane "What?"
         joseph "When I go, I want them there. Liz and Emma."
+        show diane Scene1Sad at right
         joseph "For the funeral."
         diane "Of course they'll be there, Dad."
+        show diane Scene1 at right
 
     menu:
         "I didn't go to my father's funeral.":
@@ -173,6 +241,7 @@ label start:
             jump attendedfuneral
 
     label didntgofuneral:
+        show joseph Scene1Sad at left
         joseph "I'll never forgive myself for what I did."
         joseph "I was angry, but missing my own father's funeral..."
         diane "It's alright. I'm sure he knew you cared about him."
@@ -187,9 +256,11 @@ label start:
 
     label attendedfuneral:
         joseph "Burying my father was..."
+        show joseph Scene1Sad at left
         joseph "He and I never got closure. At all. I hadn't seen him since I left home."
         diane "I know. Mom told me."
         joseph "Well, I'll never feel good about our relationship."
+        show joseph Scene1 at left
         joseph "But I know that Cheryl appreciated it. And that's why I went."
         joseph "Anyway I'm glad I went."
         if isreligious == True:
@@ -202,10 +273,11 @@ label start:
 
     label continueconversation3:
     diane "You've never talked about him before. Not like this."
+    show joseph Scene1 at left
     joseph "I'm at the point where I won't get to later."
     joseph "Nobody deserves to be completely forgotten. Not even him."
     diane "What... what happened between you two?"
-    joseph "He wasn't what you'd call a loving parent."
+    joseph "I, umm..."
     joseph "After my mother died, I became the target of his grief."
     joseph "One day I had to stand up to him. And I did."
     joseph "The next day, I left home. And I never saw him again."
@@ -224,8 +296,10 @@ label start:
             jump didntHateHim
 
     label hatedHim:
+        show joseph Scene1Happy
         joseph "Oh, I sure did."
         joseph "I hated him like no other."
+        show joseph Scene1
         if attendedfathersfuneral == False:
             joseph "And even when I was forty, and heard he died, I still hated him."
             joseph "Part of me still hates him. And the other part of me is just sad."
@@ -243,8 +317,8 @@ label start:
         jump continueconversation4
 
     label didntHateHim:
-        joseph "No. I was angry, but... I knew I didn't understand."
-        joseph "I would never understand him. We were just too different."
+        joseph "No. I was angry, but... I knew he didn't understand."
+        joseph "I would never understand him either. We were just too different."
         joseph "Growing up, he'd tell me how I was just like my mother."
         joseph "And he was right, I was."
         joseph "I couldn't live with him anymore. So I left."
@@ -274,19 +348,22 @@ label start:
             jump understoodIAC
 
     label didntUnderstandIAC:
+    show joseph Scene1Sad
     joseph "I remember. I didn't understand."
     diane "Well... I was furious with you."
     joseph "I know."
     if hatedfather == True:
         diane "And I felt like I could have walked out of your life too."
         joseph "I know."
-        diane "After you and Mom divorced, for you to say..."
+        diane "For you to say..."
         joseph "It was stupid. And I still don't understand why I said what I said."
         joseph "I'm sorry."
         diane "Don't be. It was twenty years ago."
         diane "I guess I'm just saying... I understand. How you felt when you left your Dad."
+        show joseph Scene1
     else:
         diane "I didn't hate you though."
+        show joseph Scene1
         joseph "Well, you're like me. You always have been."
         diane "You couldn't hate your father, I can't hate mine."
         joseph "I don't understand how it works. How we work. But I don't mind."
@@ -294,17 +371,22 @@ label start:
 
     label understoodIAC:
     joseph "Of course I do."
-    diane "I remember when you and Mom got divorced, and I felt like my life was being torn apart."
+    diane "When I got divorced... it felt like my life was being torn apart."
+    diane "And all I had was IAC."
     if isreligious == True:
         joseph "Well, sure. You know, when I went through my divorce, we got a lot of comments from our church."
         joseph "It was '73. People gave us a hard time."
+        joseph "I lost some friendships, and I felt completely alone."
+        joseph "So all I'd do all day was work at the shop. It was the only thing that could keep me occupied."
+        diane "And all I felt like I had was IAC."
+        diane "And... you and Mom."
     else:
         joseph "Well, sure. My divorce was no party. I understood."
-    diane "Your understanding was what got me through all of that."
+        diane "Your understanding was what got me through all of that."
     if hatedfather == True:
-        diane "I have to wonder if you and my Grandfather could have had a relationship, if you had tried to be more understanding."
+        diane "I have to wonder if you and your father could have had a relationship, if you had tried to be more understanding."
     else:
-        diane "Do you think you and my Grandfather could have worked things out?"
+        diane "Do you think you and your father could have worked things out?"
         diane "You say there wasn't understanding, even though you didn't hate him."
         diane "Do you think you could have found understanding?"
     joseph "I don't know."
@@ -313,24 +395,39 @@ label start:
     label continueconversation5:
     #cell phone sound effect
     diane "That's mine, hold on."
+    hide joseph Scene1
+    hide diane Scene1
+    with dissolve
+    show dianeOnPhone at center with dissolve
     pause(1)
-    diane "Hey, Emma."
+    diane "Hey, Em."
     pause(2)
     diane "What time?"
     pause(1)
     diane "Alright, I'll be there soon."
     pause(1)
     diane "Ok. See ya."
+    hide dianeOnPhone with dissolve
+    show joseph Scene1 at left
+    show diane Scene1 at right
+    with dissolve
     joseph "Gotta run?"
     diane "Yes. But I'll be back tomorrow."
     joseph "Diane..."
     diane "Dad?"
+    show joseph Scene1Happy at left
     joseph "Thank you."
+    hide joseph Scene1
+    hide diane Scene1
+    with dissolve
+    stop music fadeout 1.0
     jump monologue1
 
     ############################################# MONOLOGUE 1 #############################################
     label monologue1:
-    scene blackbackground
+    scene blackbackground with dissolve
+    pause 1
+    play music distortedMusic
     blank "As I walk up to the steps of the chapel, my daughter's face glows."
     blank "2004. Her second marriage."
     blank "I'm so happy she found someone good to spend her life with."
@@ -340,19 +437,26 @@ label start:
     blank "Liz and Emma stand beside her, and..."
     blank "No... no, this is wrong. Who is this?"
     blank "What's happening to me?"
-    blank "I was... I was on the farm, in the field, I dont..."
+    blank "I was... I was on the farm, in the field, I don't..."
     blank "I don't have a daughter..."
+    scene 1995background with dissolve
+    stop music fadeout 1.0
+    pause 3
+    scene blackbackground with dissolve
+    pause 1
     jump scene2
     ############################################# SCENE 2 #############################################
 
     label scene2:
-    scene scene2
-    show josephScene2 at left
-    show dianeScene2 at right
+    scene scenetwobackground with dissolve
+    play music scene2happyMusic
+    pause 2
+    show joseph Scene2 at left
+    show diane Scene2 at right
     with dissolve
     diane "Dad, I have a question about you and Mom."
     joseph "Uh oh."
-    diane "How was your divorce?"
+    diane "What was your divorce like?"
     diane "I know you both pretended it went smoothly and you were both civil, but..."
     diane "How was it, really?"
     menu:
@@ -369,8 +473,9 @@ label start:
         joseph "Well, and you know. The church community wasn't thrilled."
     else:
         joseph "Well, and you know. The community we lived in wasn't thrilled."
+        joseph "That hyper religious community your mom was so into."
     diane "I remember. Got made fun of a lot by the other kids."
-    joseph "So we put on a show. For you, for everyone. It was the 70's."
+    joseph "So we put on a show. Pretended everything was handled smoothly."
     diane "You shouldn't have lied."
     joseph "Listen, Diane... I'm not getting into what actually happened. It was bad."
     diane "I've asked Mom about it. She never tells me what went on."
@@ -389,7 +494,7 @@ label start:
     label continueconversation6:
     diane "What... what happened? Between you two, I mean?"
     joseph "She didn't want to be married to a mechanic her whole life."
-    diane "Didn't she know what she was getting into when she married you?"
+    diane "You don't think she knew what she was getting into when she married you?"
     joseph "I don't know. Ask her."
     diane "She won't talk about this stuff, Dad."
     joseph "I think she wanted me to keep doing what I was doing when she met me."
@@ -424,10 +529,18 @@ label start:
 
     label continueconversation7:
     joseph "Anyway, that's all in the past now."
+    joseph "I'm sure she has her own version of everything."
     pause(1)
     joseph "What brought this on?"
     pause(2)
-    joseph "Tea should be ready."
+    hide joseph Scene2
+    hide diane Scene2
+    with dissolve
+    show teaKettle at center with dissolve
+    pause(2)
+    joseph "Tea's ready."
+    hide teaKettle with dissolve
+    show diane Scene2 at right with dissolve
     #joseph leaves room
     #tea kettle sound effect
     diane "Dad?"
@@ -436,45 +549,113 @@ label start:
     diane "Come back in, I have to tell you something."
     joseph "One second."
     #joseph walks back into room
+    pause(1)
+    show joseph Scene2 at left with dissolve
     joseph "What's up?"
-    diane "I'm leaving Eric."
-    joseph "What?"
-    diane "There's nothing there anymore."
-    diane "He's verbally abusive to me. Every day now. I'm done trying to understand why he's become this way."
+    diane "I quit my job. I'm going to be working on IAC as a full time gig."
+    joseph "The- wait- the program?"
+    show diane Scene2Happy at right
+    diane "IAC has become so much more than that, Dad."
     if understoodIAC == True:
-        joseph "Well, alright."
-        diane "That's it?"
-        joseph "It's your business."
-        joseph "You know when your Mom and I got divorced... it wasn't fair, what we put you through."
-        joseph "I just hope you two are okay with this."
-        diane "We are. It's not working."
-        joseph "...Well, if it's not working, it's not working."
-        diane "Dad... thanks for understanding. Thank you."
+        joseph "Can... can you afford to do that?"
+        diane "Well, it's not going to be easy... but I think so. Yeah."
+        pause(1)
+        joseph "Alright. Then I think you should go for it."
+        diane "Thanks, Dad."
+        show diane Scene2 at right
+        if attendedCollege == True:
+            joseph "Dropping out of college is one of my biggest regrets."
+            joseph "Now, seeing you here, doing things that will change the world..."
+            joseph "Well. I'm proud of you."
+        else:
+            joseph "I never had a dream to chase after."
+            joseph "Everything I did felt like it was just enough to keep myself fed, and with a place to live."
+            joseph "Now, seeing you here, chasing your dreams..."
+            joseph "Well. I'm proud of you."
+        diane "Thank you."
+        diane "I should get going."
+        joseph "You're sure? The tea-"
+        diane "I just had an idea. For something to do with IAC."
+        joseph "That thing is all you can think about, isn't it?"
+        joseph "I hope it's worth it."
+        diane "It will be."
+        diane "I'll be back tomorrow to take you to your appointment."
+        joseph "Drive safe."
+        diane "Will do!"
+        diane "And don't forget your insurance card."
+        joseph "I- I know how to go to a new doctor, Diane."
+        diane "Okay! Sorry! Just trying to help."
+        diane "Since they're putting you under you won't be much help on the way back."
+        diane "Ok. I really gotta go. See you."
+        stop music fadeout 1.0
         jump monologue2
     else:
-        joseph "This is a joke, right?"
-        diane "What?"
-        joseph "You heard me."
-        diane "Dad?"
-        joseph "Are you really going to tell me you're making the same mistakes I did?"
-        joseph "Do you have any idea what my life has been since..."
-        diane "Excuse me? Are you really going to make this about you?"
-        joseph "Well it sounds to me like you were already set on that!"
-        diane "Oh, wow."
-        joseph "What?"
-        diane "I... I have to leave."
-        joseph "Diane, give me a-"
-        diane "I don't have anything to say to you."
+        joseph "Oh? So it's become... what? A source of income?"
+        show diane Scene2 at right
+        play music scene2angryMusic
+        diane "Dad, please-"
+        joseph "I'm- ok. I'm sorry. I'll listen."
+        diane "IAC is advancing at a rate I can't even believe."
+        show diane Scene2Happy at right
+        diane "Dad, I know I've been working on this for a long time."
+        diane "But this is real! With enough time and patience, IAC could become something really valuable."
+        diane "Not just to me, but... to the world."
+        joseph "How much time?"
+        show diane Scene2 at right
+        diane "I don't-"
+        joseph "You're 29, Diane."
+        joseph "How much more time can you afford to pour into this thing?"
+        diane "That's unfair."
+        joseph "It's the truth."
+        diane "Do you think, what, that this is all a waste?"
+        joseph "I think that you're throwing away whole parts of your life,"
+        joseph "whether it's with this computer program, or with Eric, or-"
+        diane "You can't do that. Stop it."
+        show joseph Scene2Angry at left
+        joseph "Sooner or later, Diane, you need to accept that you threw a lot of time away with that marriage-"
+        show joseph Scene2 at left
+        show diane Scene2Angry at right
+        diane "How dare you."
+        diane "My life is- was not just one relationship."
+        diane "I can't... I can't believe you just said that."
+        joseph "Diane, I-"
+        diane "No. Listen to me. I'm going to work on IAC."
+        diane "I actually have a whole bunch of plans put together for how I'm going to get by."
+        joseph "Ok, see, that's something I didn't-"
+        diane "But you don't LISTEN to me. You just ASSUME I don't have anything figured out!"
+        show joseph Scene2Angry at left
+        joseph "Because I know that you don't!"
+        joseph "Because I didn't have anything figured out at your age either!"
+        joseph "And I have to sit here and watch you make the same mistakes I did, watch you fumble around!"
+        joseph "Wasting your life away in front of that computer screen, wasting it with that piece of shit you married!"
+        joseph "I won't let you grow old and feel like I do! And be like I am! And know-"
+        show joseph Scene2 at left
+        joseph "And know how this is all going to play out."
+        show diane Scene2 at right
+        joseph "I don't want this for you, Diane..."
+        diane "Nobody knows how anything is going to play out, Dad."
+        diane "I should go."
+        joseph "Diane, please..."
+        diane "You know what? I can't even begin to unpack whatever weird, repressed trauma you're dealing with."
+        diane "That's not my job. I know what my job is. I can't..."
+        diane "I can't think right now. Find another ride to your appointment tomorrow."
+        diane "Just give me space."
+        hide joseph Scene2
+        hide diane Scene2
+        with dissolve
+        stop music fadeout 1.0
         jump monologue2
 
     ############################################# MONOLOGUE 2 #############################################
     label monologue2:
-    scene blackbackground
+    scene blackbackground with dissolve
+    pause 1
+    play music distortedMusic
     blank "How long have I been here?"
     blank "As my memory rushes throught me I begin to make sense of it all."
     blank "I feel... torn in half, like one part of me is an adult and the other a child."
     blank "This is horrible."
-    blank "I begin to let it take hold of me, to ignore that which I desire and instead see that which I have already been."
+    blank "I begin to let it take hold of me, to ignore what I desire and instead see that which I have already been."
     blank "My existence is more temporary than I realize; the time that I will be on this earth is short."
     blank "I look forward and see nothing."
     pause(1)
@@ -482,6 +663,11 @@ label start:
     pause(1)
     blank "It's coming. Don't let it take me."
     blank "Don't let it take me!"
+    scene 1975background with dissolve
+    stop music fadeout 1.0
+    pause 3
+    scene blackbackground with dissolve
+    pause 1
     if attendedfathersfuneral == True:
         jump scene3AttendedFuneral
     else:
@@ -490,17 +676,30 @@ label start:
     ############################################# SCENE 3 #############################################
     label scene3AttendedFuneral:
     scene scenethreebackground with dissolve
+    play music scene3Music
     pause 2
+    show josephWalking at center with dissolve
+    pause 2
+    hide josephWalking
     #Joseph walks into park, approaches cheryl, waiting on bench
-    show josephScene3 at left
-    show cheryl at right
+    show joseph Scene3 at left
+    show cheryl Scene3 at right
     with dissolve
     joseph "Hi."
     cheryl "Hi."
-    joseph "Well don't get up and hug me or anything."
-    cheryl "Sorry, I just..."
+    joseph "Thanks again for driving with me halfway."
+    cheryl "Well, like I said, it just lined up nicely with this conference I have to be at."
+    cheryl "What are you planning on doing?"
+    joseph "I'm crashing at a hotel a few blocks over tonight."
+    joseph "I'll be doing the rest of the drive East tomorrow."
+    pause 1
     joseph "You okay?"
     cheryl "Yeah. Last week just... took a lot out of me."
+    pause 1
+    hide joseph Scene3
+    hide cheryl Scene3
+    with dissolve
+    show onBench with dissolve
     joseph "I know."
     joseph "It was weird, seeing him there."
     cheryl "Not for me."
@@ -515,10 +714,18 @@ label start:
     joseph "I'm sorry."
     cheryl "I'm glad you made it."
     joseph "So am I."
-    cheryl "How's Diane doing?"
-    joseph "Working hard. Getting good grades."
-    joseph "That's good."
     pause(1)
+    hide onBench with dissolve
+    show joseph Scene3 at left
+    show cheryl Scene3Happy at right
+    with dissolve
+    cheryl "How's Diane doing?"
+    show joseph Scene3Happy at left
+    joseph "Working hard. Getting good grades."
+    cheryl "That's good."
+    pause(1)
+    show joseph Scene3 at left
+    show cheryl Scene3 at right
     if attendedCollege == True:
         cheryl "I think part of him... just didn't want you to go."
         cheryl "When you left."
@@ -535,8 +742,14 @@ label start:
     cheryl "I know."
     pause(1)
     cheryl "God, this... this isn't right, is it? This isn't how a brother and sister are supposed to talk..."
+    show joseph Scene3Happy at left
     joseph "I didn't know there was a way we should talk."
+    cheryl "You know, if you hadn't shown up the day of the actual funeral, we would've had a chance to..."
+    joseph "Hey, I made it, didn't I?"
+    cheryl "Barely."
+    joseph "Still made it."
     cheryl "See that kid with the guitar?"
+    show joseph Scene3 at left
     joseph "Yeah?"
     cheryl "Have him play something."
     joseph "...What?"
@@ -546,9 +759,14 @@ label start:
 
     label scene3NoFuneral:
     scene scenethreebackground with dissolve
-    pause 2
-    show josephScene3 at left
-    show cheryl at right
+    play music scene3Music
+    pause(2)
+    show josephWalking at center with dissolve
+    pause(2)
+    hide josephWalking
+    #Joseph walks into park, approaches cheryl, waiting on bench
+    show joseph Scene3 at left
+    show cheryl Scene3 at right
     with dissolve
     joseph "Hi."
     cheryl "Hi."
@@ -565,7 +783,11 @@ label start:
         cheryl "So you hated him. So what? What on earth gives you the right to not be there for the family?"
     else:
         cheryl "You've always said you respected him. What the hell happened to you?"
-    cheryl "To miss your own father's funeral... there is no good reason you can give."
+    pause(1)
+    hide joseph Scene3
+    hide cheryl Scene3
+    with dissolve
+    show onBench with dissolve
     joseph "I'm sorry."
     cheryl "I don't care."
     joseph "I know."
@@ -576,13 +798,18 @@ label start:
         cheryl "When you went to college... everything changed, you know."
     else:
         cheryl "When you and your friend went and started that business... everything changed, you know."
-    cheryl "You weren't there, but nothing was the same again."
+    cheryl "You weren't around for it, but nothing was the same again."
+    cheryl "Dad wasn't the same."
     pause(1)
     cheryl "I can't hate you. But I'm so... mad..."
     pause(2)
-    cheryl "God, this... this isn't right, is it? This isn't how a brother and sister are supposed to talk..."
-    joseph "I didn't want this for you."
+    cheryl "And now it's on me, you know? To explain to everyone why you weren't there. Because you won't."
+    joseph "I didn't want anyone to have to deal with that. But I can't."
     pause(1)
+    hide onBench with dissolve
+    show joseph Scene3 at left
+    show cheryl Scene3 at right
+    with dissolve
     cheryl "See that kid with the guitar?"
     joseph "Yeah?"
     cheryl "Have him play something."
@@ -592,9 +819,26 @@ label start:
     jump continueconversation8
 
     label continueconversation8:
+    hide cheryl Scene3
+    hide joseph Scene3
+    with dissolve
+    show josephWalking at center with dissolve
+    pause(2)
+    hide josephWalking
+    show coinsIntoCase at center
+    with dissolve
     #Joseph walks over to 20 year old holding guitar, tosses some coins into his hat. Acoustic guitar music starts playing
     joseph "Here. Mind playing something? Thanks."
+    pause(1)
+    hide coinsIntoCase
+    show josephWalkingReversed at left
+    show guitarPlaying at right
+    with dissolve
     #Joseph walks back over to Cheryl
+    pause(2)
+    hide josephWalkingReversed
+    show onBench at left
+    with dissolve
     joseph "Hey, kid's not half bad."
     pause(2)
     cheryl "I'm sorry."
@@ -602,13 +846,23 @@ label start:
     cheryl "I came here ready to argue with you..."
     pause(1)
     cheryl "The truth is, I don't know what happened. I never will."
+    hide onBench
+    hide guitarPlaying
+    with dissolve
+    show joseph Scene3 at left
+    show cheryl Scene3 at right
+    with dissolve
     cheryl "I don't care what the family thought, and I don't care about what went on between you two."
+    show cheryl Scene3Happy at right
     cheryl "I care that you're my brother, and that you're in my life still."
     pause(2)
     joseph "I haven't seen you enough. I haven't been around."
     cheryl "Well, we need to fix that. I'll start visiting more. Seeing Diane more."
+    show joseph Scene3Happy at left
     joseph "She'd love that."
     pause(2)
+    show joseph Scene3 at left
+    show cheryl Scene3 at right
     cheryl "So you and Elizabeth aren't..."
     joseph "She, umm, moved out."
     if divorcemessy == False:
@@ -625,21 +879,26 @@ label start:
     pause(2)
     joseph "Do you remember the time we went down to the lake with the McKinleys?"
     cheryl "And you broke your leg?"
+    show cheryl Scene3Happy at right
     joseph "Yeah. On that rope that swung out over the water."
+    joseph "I had to be... what, nine? Ten?"
     cheryl "Dad was so angry."
     pause(1)
     joseph "I remember swinging forward, and feeling the wind rush past me, and then hearing the crack of the branch breaking."
     cheryl "I wasn't looking. By the time I'd turned around you were already in the water."
+    show joseph Scene3Happy at left
     joseph "Hurt like nothing else. May as well have not hit water at all, the rocks were so shallow."
     cheryl "I ran in and Jerome and I carried you out of there."
     joseph "Well, I still owe you for that."
     pause(2)
+    show joseph Scene3 at left
     joseph "Cheryl, do you still go to church?"
+    show cheryl Scene3 at right
     cheryl "No. Stopped years ago."
     if isreligious == True:
         joseph "I do."
         cheryl "Yeah? I guess I just reached the point where... I don't buy it anymore."
-        joseph "I still do. Belive, that is."
+        joseph "I still do. Believe, that is."
         pause(1)
         cheryl "Well, I'm happy for you."
         joseph "You are?"
@@ -672,10 +931,18 @@ label start:
 
     label dadWasMad:
     joseph "He didn't yell. He just sat there. But I could tell he was more furious with me than he had ever been before."
-    jump scene4
+    hide joseph Scene3
+    hide cheryl Scene3
+    with dissolve
+    stop music fadeout 1.0
+    jump monologue3
 
     label dadwassad:
     joseph "He just sat in his chair. Wouldn't move. I've never seen him so depressed."
+    hide joseph Scene3
+    hide cheryl Scene3
+    with dissolve
+    stop music fadeout 1.0
     jump monologue3
 
     ############################################# MONOLOGUE 3 #############################################

@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 631: expected ':' not found.
-    label scene4
-                ^
+File "game/script.rpy", line 58: expected statement.
+    config.main_menu_music = "audio/music/scene2happyEdited.ogg"
+                           ^
 
-Ren'Py Version: Ren'Py 7.0.0.196
-Wed Aug 08 17:10:31 2018
+Ren'Py Version: Ren'Py 7.2.2.491
+Thu Jun 06 22:23:51 2019
