@@ -18,11 +18,11 @@ image joseph Scene1Sad = "js1sadport"
 image joseph Scene1Happy = "js1happyport"
 image diane Scene1 = "ds1neutralport"
 image diane Scene1Sad = "ds1sadport"
+image diane Scene1Happy = "ds1happyport"
 
 #Scene 2:
 image joseph Scene2 = "js2neutralport"
 image joseph Scene2Angry = "js2angryport"
-image diane Scene2Happy = "ds2happyport"
 image diane Scene2Angry = "ds2angryport"
 image diane Scene2 = "ds2neutralport"
 
@@ -528,6 +528,35 @@ label start:
     jump continueconversation7
 
     label continueconversation7:
+    diane "Dad, it's... ok to tell me what happened."
+    diane "If it's more than that..."
+    menu:
+        "That's all there was to it.":
+            jump hideSecretAbility
+
+        "There was... something else.":
+            jump revealSecretAbility
+
+    label hideSecretAbility:
+    ##Joseph sad portrait##
+    joseph "There may have been... other small stuff that wasn't working, but that was... it."
+    jump continueconversation8
+
+    label revealSecretAbility:
+    joseph "I, umm..."
+    ##Joseph Sad portrait##
+    joseph "I thought I knew... how things would go."
+    joseph "I had... I don't know."
+    show Joseph Scene2 at left
+    joseph "I had convinced myself that things were somehow predetermined."
+    joseph "That there wasn't anything to be suprised by in my life."
+    joseph "And your mother, well... I don't think she realized until it was too late that I was serious."
+    joseph "That I really had convinced myself that I somehow knew how everything around me would go."
+    ##Joseph Sad portrait##
+    joseph "And when she left I realized how wrong I was."
+
+    label continueconversation8:
+    show Joseph Scene2 at left
     joseph "Anyway, that's all in the past now."
     joseph "I'm sure she has her own version of everything."
     pause(1)
@@ -554,29 +583,35 @@ label start:
     joseph "What's up?"
     diane "I quit my job. I'm going to be working on IAC as a full time gig."
     joseph "The- wait- the program?"
-    show diane Scene2Happy at right
+    ##Diane Scene 2 happy##
     diane "IAC has become so much more than that, Dad."
     if understoodIAC == True:
         joseph "Can... can you afford to do that?"
         diane "Well, it's not going to be easy... but I think so. Yeah."
         pause(1)
+        ##Joseph Happy Portrait##
         joseph "Alright. Then I think you should go for it."
         diane "Thanks, Dad."
         show diane Scene2 at right
         if attendedCollege == True:
+            show Joseph Scene2 at left
             joseph "Dropping out of college is one of my biggest regrets."
             joseph "Now, seeing you here, doing things that will change the world..."
+            ##Joseph Happy Portrait##
             joseph "Well. I'm proud of you."
         else:
+            show Joseph Scene2 at left
             joseph "I never had a dream to chase after."
             joseph "Everything I did felt like it was just enough to keep myself fed, and with a place to live."
             joseph "Now, seeing you here, chasing your dreams..."
+            ##Joseph Happy Portrait
             joseph "Well. I'm proud of you."
         diane "Thank you."
         diane "I should get going."
         joseph "You're sure? The tea-"
         diane "I just had an idea. For something to do with IAC."
         joseph "That thing is all you can think about, isn't it?"
+        show Joseph Scene2 at left
         joseph "I hope it's worth it."
         diane "It will be."
         diane "I'll be back tomorrow to take you to your appointment."
@@ -596,7 +631,7 @@ label start:
         diane "Dad, please-"
         joseph "I'm- ok. I'm sorry. I'll listen."
         diane "IAC is advancing at a rate I can't even believe."
-        show diane Scene2Happy at right
+        ##Diane Scene 2 Happy##
         diane "Dad, I know I've been working on this for a long time."
         diane "But this is real! With enough time and patience, IAC could become something really valuable."
         diane "Not just to me, but... to the world."
@@ -629,6 +664,7 @@ label start:
         joseph "And I have to sit here and watch you make the same mistakes I did, watch you fumble around!"
         joseph "Wasting your life away in front of that computer screen, wasting it with that piece of shit you married!"
         joseph "I won't let you grow old and feel like I do! And be like I am! And know-"
+        ##Joseph sad portrait##
         show joseph Scene2 at left
         joseph "And know how this is all going to play out."
         show diane Scene2 at right
@@ -755,7 +791,7 @@ label start:
     joseph "...What?"
     cheryl "I just... really need to hear some music right now."
     joseph "Uh, I mean, I have... a few nickles..."
-    jump continueconversation8
+    jump continueconversation9
 
     label scene3NoFuneral:
     scene scenethreebackground with dissolve
@@ -816,9 +852,9 @@ label start:
     joseph "...What?"
     cheryl "I just... really need to hear some music right now."
     joseph "Uh, I mean, I have... a few nickles..."
-    jump continueconversation8
+    jump continueconversation9
 
-    label continueconversation8:
+    label continueconversation9:
     hide cheryl Scene3
     hide joseph Scene3
     with dissolve
@@ -873,9 +909,24 @@ label start:
         joseph "But Elizabeth won't even talk to me."
     cheryl "I'm sorry."
     pause(2)
-    joseph "How are you and Josh doing?"
-    cheryl "We're good."
-    joseph "Good."
+    cheryl "When you left the house..."
+    joseph "Cheryl, I really don't want to talk about that."
+    cheryl "Do you remember how he reacted to it?"
+    cheryl "Please, just... tell me what Dad said when you left."
+    menu:
+        "He was furious.":
+            $dadwasmad = True;
+            joseph "He didn't yell. He just sat there. But I could tell he was more furious with me than he had ever been before."
+            jump continueconversation10
+
+        "He was sad.":
+            $dadwasmad = False;
+            joseph "He just sat in his chair. Wouldn't move. I've never seen him so depressed."
+            jump continueconversation10
+
+    label continueconversation10:
+    joseph "And then I... went to Elizabeth, with my stuff in the car, and she and I drove out to Toronto."
+    joseph "And that was that."
     pause(2)
     joseph "Do you remember the time we went down to the lake with the McKinleys?"
     cheryl "And you broke your leg?"
@@ -889,7 +940,6 @@ label start:
     show joseph Scene3Happy at left
     joseph "Hurt like nothing else. May as well have not hit water at all, the rocks were so shallow."
     cheryl "I ran in and Jerome and I carried you out of there."
-    joseph "Well, I still owe you for that."
     pause(2)
     show joseph Scene3 at left
     joseph "Cheryl, do you still go to church?"
@@ -914,31 +964,31 @@ label start:
         cheryl "Same. At the end of the day, that's kind of the point, isn't it?"
         joseph "I appreciate the stories. Just can't commit myself to the belief."
     pause(2)
-    cheryl "I, uh... I want to know something."
-    joseph "What is it?"
-    pause(2)
-    cheryl "You... you know, I wasn't... home, when you left."
-    joseph "I know."
-    cheryl "Do you remember how he reacted to it?"
-    menu:
-        "He was furious.":
-            $dadwasmad = True;
-            jump dadWasMad
-
-        "He was sad.":
-            $dadwasmad = False;
-            jump dadWasMad
-
-    label dadWasMad:
-    joseph "He didn't yell. He just sat there. But I could tell he was more furious with me than he had ever been before."
-    hide joseph Scene3
-    hide cheryl Scene3
-    with dissolve
-    stop music fadeout 1.0
-    jump monologue3
-
-    label dadwassad:
-    joseph "He just sat in his chair. Wouldn't move. I've never seen him so depressed."
+    joseph "I knew."
+    joseph "Cheryl, I knew."
+    cheryl "Knew what?"
+    joseph "I knew that would happen. The rope would break, I would fall, that you'd come and get me..."
+    joseph "Everything that happened that day at the McKinley's. I knew all of it. Every detail."
+    joseph "And I've known so much more. I knew we would talk here. I knew our father would die."
+    cheryl "You didn't know that."
+    joseph "Yes, I did, I did. I know you don't believe me."
+    joseph "I knew all of that."
+    ##Show Joseph sad##
+    joseph "So why didn't I know she would leave me?"
+    if isreligious == True:
+        joseph "Why would God leave that part out?"
+        joseph "Why would God pretend to tell me everything that would come to pass, but leave my own wife out?"
+        joseph "Why?"
+    else:
+        joseph "Why wouldn't I know to expect that?"
+    cheryl "Joseph, listen."
+    cheryl "Nobody can know what's going to happen."
+    cheryl "You've convinced yourself that the world is something that it isn't."
+    cheryl "You're going through a lot right now."
+    cheryl "But it sounds to me like you need someone to talk to."
+    cheryl "Someone who isn't me, or Elizabeth, or..."
+    cheryl "Joseph, honestly, I think you should see a doctor."
+    cheryl "I think you need help figuring this out."
     hide joseph Scene3
     hide cheryl Scene3
     with dissolve
@@ -964,38 +1014,12 @@ label start:
     ############################################# SCENE 4 #############################################
     label scene4:
     scene scene4
-    #Shots of bedroom, hallways, stairs, then living room. Takes a few seconds. Cinematic.
-    #Shot of father on couch, framing Joseph
-    joseph "I'm leaving, Father."
-    pause(2)
-    if attendedCollege == True:
-        joseph "I'm going to college."
-    else:
-        joseph "I'm going with Jack to start my own business."
-    pause(2)
-    if dadwasmad == True:
-        father "Get your stuff. And get the hell out of my house."
-    else:
-        father "Why did it turn out this way?..."
-        father "I'm sorry, I'm sorry..."
-        joseph "You can't take yesterday back."
-        father "I know."
-    #Shots of Joseph gathering his things
-    if hatedfather == True:
-        joseph "I hate you."
-        father "Leave."
-    else:
-        joseph "I wish things were different."
-        father "I do too."
-        father "Now get out."
-        joseph "Fine."
-    #Shot of Joseph closing front door
     jump scene5
 
     ############################################# SCENE 5 #############################################
     label scene5:
     scene scene5
-    #shots of wheat field
+    #background of wheat field
     blank "I was born on a farm in Alberta, along the Rockies."
     blank "My mother passed when I was still too young to work, and my father cared for my sister and I."
     blank "When I was eight years old, I experienced somthing very odd."
@@ -1005,38 +1029,54 @@ label start:
     blank "It slowly descended, until it hovered in place just before me."
     blank "I experienced something that I do not understand."
     if attendedfathersfuneral == True:
+        ##Grave cutaway##
         blank "I saw myself at my father's funeral."
     else:
+        ##Park bench cutaway##
         blank "I saw myself apologizing for missing my father's funeral."
     if hatedfather == True:
+        ##Puching wall cutaway##
         blank "I saw the hate I held onto when I left home."
     else:
+        ##Holding head guiltily cutaway##
         blank "I saw the respect I had for my father, in spite of our differences."
     #orb makes sounds, rotates, whatever
     if attendedCollege == True:
+        ##Exterior of college cutaway##
         blank "I saw myself attending, and then dropping out of college."
     else:
+        ##Exterior of tiling company cutaway##
         blank "I saw myself starting a business with my closest friend."
     if divorcemessy == False:
-        blank "I saw my wife and I sitting down to discuss our divorce."
+        ##Elizabeth and Joseph pouring over documents across a table cutaway##
+        blank "I saw Elizabeth and I sitting down to discuss our divorce."
     else:
-        blank "I saw my wife and I yelling at each other while our daughter wasn't home."
+        ##Elizabeth and Joseph yelling at each other cutaway##
+        blank "I saw Elizabeth and I yelling at each other while our daughter wasn't home."
     if understoodIAC == True:
-        blank "I saw my daughter explaining her divorce to me, and my understanding of her."
+        ##Cutaway of IAC##
+        blank "I saw my daughter explaining her work in artificial intelligence, and myself finally understanding what she had accomplished."
     else:
-        blank "I saw myself lecturing my daughter on her divorce."
+        ##Cutaway of Diane alone in garage, crying##
+        blank "I saw my inability to understand my daughter's work in artificial intelligence, and how she needed my support."
     if dadwasmad == True:
+        ##Cutaway of Joseph's father looking furious##
         blank "I saw my Father's look of utter hatred as I walked out of my childhood home."
     else:
+        ##Cutaway of Joseph's father looking shameful##
         blank "I saw my father's shame as I walked out of my childhood home."
     if isreligious == True:
-        blank "I saw myself attending church to explain what I was experiencing just then."
+        ##Cutaway of Joseph in confessional
+        blank "I saw myself speaking with members of my church, trying to come to terms with what I had experienced."
     else:
-        blank "I saw myself staring into a mirror, struggling to understand what I was experiencing just then."
+        ##Cutaway of Joseph in mirror##
+        blank "I saw myself staring into a mirror, struggling to understand what I had experienced."
+    ##Cutaway of Joseph hovering in air before orb##
     blank "I saw myself screaming in agony as I spent a lifetime within my own future."
 
     scene blackbackground
-    blank "And then, at once, it stopped. And my legs gave way as I felt the earth beneath me."
+    ##Cutaway of Joseph on hands and knees##
+    blank "And then, at once, it stopped. And my legs gave way and I felt the earth beneath me."
     #sound effect of hearbeat monitor stopping
 
 
